@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ReLoop - Marketplace & Sampah In-Service</title>
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- AOS -->
+  <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet" />
+  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+
+  <!-- GSAP -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+    body {
+      background: linear-gradient(180deg, #000000 0%, #1e1e2f 100%);
+      font-family: 'Inter', sans-serif;
+    }
+    /* Header Shadow & Blur */
+    header {
+      backdrop-filter: saturate(180%) blur(10px);
+      background-color: rgba(30,30,47,0.85);
+    }
+    /* Button Hover Glowing Effect */
+    .btn-glow {
+      position: relative;
+      overflow: hidden;
+      z-index: 0;
+      transition: color 0.3s ease;
+    }
+    .btn-glow::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: linear-gradient(45deg, #4C5EFF, #7b82ff, #4C5EFF, #7b82ff);
+      background-size: 400% 400%;
+      animation: glowing 15s linear infinite;
+      filter: blur(30px);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      z-index: -1;
+      border-radius: 9999px;
+    }
+    .btn-glow:hover::before,
+    .btn-glow:focus-visible::before {
+      opacity: 0.6;
+    }
+    @keyframes glowing {
+      0% {background-position: 0% 50%;}
+      50% {background-position: 100% 50%;}
+      100% {background-position: 0% 50%;}
+    }
+    /* Card Hover */
+    .card-hover:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 30px rgb(76 94 255 / 0.3);
+    }
+    /* Smooth fade-in animation */
+    .fade-in-up {
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeInUp 1s forwards;
+    }
+    @keyframes fadeInUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    /* Scrollbar style */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #1e1e2f;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #4C5EFF;
+      border-radius: 9999px;
+    }
+  </style>
+</head>
+<body class="text-gray-100">
+
+<!-- Header -->
+<header class="sticky top-0 z-50 shadow-md">
+  <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+    <div class="flex items-center space-x-3 cursor-pointer select-none" tabindex="0" aria-label="Logo ReLoop">
+      <img src="asset/logo.png" alt="ReLoop Logo" class="logo-img w-12 h-12 object-contain rounded-full shadow-lg" />
+      <h1 class="text-2xl font-extrabold text-white tracking-wide">ReLoop</h1>
+    </div>
+    <nav class="hidden md:flex space-x-8 text-white font-semibold tracking-wide uppercase">
+      <a href="#fitur" class="hover:text-indigo-400 transition duration-300 focus:outline-none focus:text-indigo-400">Fitur</a>
+      <a href="#tentang" class="hover:text-indigo-400 transition duration-300 focus:outline-none focus:text-indigo-400">Tentang</a>
+      <a href="#kontak" class="hover:text-indigo-400 transition duration-300 focus:outline-none focus:text-indigo-400">Kontak</a>
+    </nav>
+  </div>
+</header>
+
+<!-- Hero -->
+<section class="py-36 text-center px-6 relative overflow-hidden">
+  <div class="max-w-4xl mx-auto">
+    <h2 class="hero-title text-5xl md:text-6xl font-extrabold text-white leading-tight mb-6 drop-shadow-lg" data-aos="fade-down" data-aos-delay="100">
+      Jadikan Barangmu Bernilai & Sampahmu Bertanggung Jawab
+    </h2>
+    <p class="text-xl max-w-3xl mx-auto text-indigo-300 mb-12" data-aos="fade-up" data-aos-delay="200">
+      Gabung dengan ReLoop untuk mulai jual barang tak terpakai & atur penjemputan sampah rumah tangga dengan mudah.
+    </p>
+    <a href="#fitur" class="hero-btn btn-glow inline-block px-10 py-4 bg-[#4C5EFF] text-white rounded-full shadow-xl font-semibold tracking-wide
+      hover:bg-indigo-600 focus-visible:outline-indigo-300" data-aos="zoom-in" data-aos-delay="300" role="button" tabindex="0">
+      Jelajahi Fitur
+    </a>
+
+    <!-- Animated bubbles behind button -->
+    <div aria-hidden="true" class="absolute inset-0 flex justify-center items-center pointer-events-none -z-10">
+      <svg class="w-96 h-96 opacity-20 animate-pulse" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" fill="none">
+        <circle cx="60" cy="60" r="50" fill="#4C5EFF" />
+        <circle cx="140" cy="140" r="50" fill="#7b82ff" />
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- Fitur -->
+<section id="fitur" class="bg-white py-28 px-6">
+  <div class="max-w-7xl mx-auto">
+    <h3 class="text-4xl font-extrabold text-indigo-700 text-center mb-16 tracking-tight" data-aos="fade-up">Fitur Unggulan ReLoop</h3>
+    <div class="grid md:grid-cols-2 gap-14">
+      <!-- Preloved Marketplace -->
+      <div class="card-hover p-8 rounded-2xl shadow-lg border border-indigo-100 transition-transform duration-300" data-aos="fade-right" data-aos-offset="200" tabindex="0" role="region" aria-label="Preloved Marketplace Features">
+        <h4 class="text-3xl font-semibold text-indigo-700 mb-6">Preloved Marketplace</h4>
+        <ul class="list-disc ml-6 text-gray-700 space-y-3 text-lg leading-relaxed">
+          <li>Unggah dan jual barang tak terpakai (pakaian, buku, elektronik, dll)</li>
+          <li>Chat langsung via WhatsApp untuk transaksi cepat</li>
+          <li>Verifikasi penjual & rating pembeli</li>
+          <li>Fitur tukar barang & kurasi berbasis AI</li>
+        </ul>
+      </div>
+      <!-- Sampah In-Service -->
+      <div class="card-hover p-8 rounded-2xl shadow-lg border border-indigo-100 transition-transform duration-300" data-aos="fade-left" data-aos-offset="200" tabindex="0" role="region" aria-label="Sampah In-Service Features">
+        <h4 class="text-3xl font-semibold text-indigo-700 mb-6">Sampah In-Service</h4>
+        <ul class="list-disc ml-6 text-gray-700 space-y-3 text-lg leading-relaxed">
+          <li>Penjadwalan penjemputan sampah dari rumah</li>
+          <li>Jenis sampah: organik & anorganik (B3 menyusul)</li>
+          <li>Driver terjadwal harian/mingguan</li>
+          <li>Insentif berupa diskon & saldo e-wallet</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Tentang -->
+<section id="tentang" class="bg-[#F6F8FF] py-28 px-6">
+  <div class="max-w-4xl mx-auto text-center" data-aos="zoom-in" tabindex="0" aria-label="Tentang Kami Section">
+    <h3 class="text-4xl font-bold text-[#1E1E2F] mb-8 tracking-tight">Tentang Kami</h3>
+    <p class="text-xl text-gray-800 leading-relaxed max-w-xl mx-auto">
+      ReLoop adalah startup digital berbasis ekonomi sirkular dan green commerce. Kami percaya bahwa teknologi dapat menjadi solusi untuk mengurangi limbah dan mendorong gaya hidup berkelanjutan. Dengan menggabungkan marketplace preloved dan layanan sampah terjadwal, kami membantu masyarakat menjadi lebih bertanggung jawab terhadap lingkungan.
+    </p>
+  </div>
+</section>
+
+<!-- Testimoni -->
+<section id="testimoni" class="bg-white py-28 px-6">
+  <div class="max-w-7xl mx-auto">
+    <h3 class="text-4xl font-extrabold text-indigo-700 text-center mb-16 tracking-tight" data-aos="fade-up">Apa Kata Mereka?</h3>
+    <div class="grid md:grid-cols-3 gap-12">
+      <div class="bg-indigo-50 p-8 rounded-2xl shadow-md transition-transform duration-300 hover:scale-[1.05]" data-aos="fade-up" data-aos-delay="100" tabindex="0" role="article" aria-label="Testimoni Siska">
+        <p class="text-gray-700 italic text-lg">"Saya berhasil jual banyak barang bekas! Fiturnya simpel dan aman!"</p>
+        <h5 class="mt-6 font-semibold text-indigo-700 text-lg">Siska, Mahasiswi</h5>
+      </div>
+      <div class="bg-indigo-50 p-8 rounded-2xl shadow-md transition-transform duration-300 hover:scale-[1.05]" data-aos="fade-up" data-aos-delay="200" tabindex="0" role="article" aria-label="Testimoni Budi">
+        <p class="text-gray-700 italic text-lg">"Sampah rumah langsung dijemput. Solusi banget buat yang sibuk kayak saya."</p>
+        <h5 class="mt-6 font-semibold text-indigo-700 text-lg">Budi, Freelancer</h5>
+      </div>
+      <div class="bg-indigo-50 p-8 rounded-2xl shadow-md transition-transform duration-300 hover:scale-[1.05]" data-aos="fade-up" data-aos-delay="300" tabindex="0" role="article" aria-label="Testimoni Dian">
+        <p class="text-gray-700 italic text-lg">"Akhirnya ada platform lokal yang peduli lingkungan dan modern banget!"</p>
+        <h5 class="mt-6 font-semibold text-indigo-700 text-lg">Dian, Ibu Rumah Tangga</h5>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="py-24 bg-blue-50 px-6">
+  <div class="max-w-4xl mx-auto">
+    <h3 class="text-4xl font-extrabold text-blue-900 mb-12 text-center tracking-tight">Pertanyaan Umum</h3>
+    <div class="space-y-8 text-blue-900" role="list" aria-label="FAQ List">
+      <details class="group border border-blue-300 rounded-lg p-6 bg-white shadow hover:shadow-lg transition-shadow cursor-pointer" data-aos="fade-right" role="listitem" tabindex="0" aria-expanded="false" aria-controls="faq1" aria-describedby="faq1-desc">
+        <summary class="font-semibold text-lg select-none list-none focus:outline-none group-open:text-indigo-600">Apakah barang preloved dikurasi?</summary>
+        <p id="faq1-desc" class="mt-2 text-blue-800 leading-relaxed max-w-prose">Ya, barang yang diunggah akan diperiksa agar sesuai dengan standar layak pakai.</p>
+      </details>
+      <details class="group border border-blue-300 rounded-lg p-6 bg-white shadow hover:shadow-lg transition-shadow cursor-pointer" data-aos="fade-left" role="listitem" tabindex="0" aria-expanded="false" aria-controls="faq2" aria-describedby="faq2-desc">
+        <summary class="font-semibold text-lg select-none list-none focus:outline-none group-open:text-indigo-600">Jenis sampah apa yang bisa dijemput?</summary>
+        <p id="faq2-desc" class="mt-2 text-blue-800 leading-relaxed max-w-prose">Saat ini kami melayani organik & anorganik. Sampah B3 menyusul di fase berikutnya.</p>
+      </details>
+      <details class="group border border-blue-300 rounded-lg p-6 bg-white shadow hover:shadow-lg transition-shadow cursor-pointer" data-aos="fade-right" role="listitem" tabindex="0" aria-expanded="false" aria-controls="faq3" aria-describedby="faq3-desc">
+        <summary class="font-semibold text-lg select-none list-none focus:outline-none group-open:text-indigo-600">Apakah layanan ReLoop gratis?</summary>
+        <p id="faq3-desc" class="mt-2 text-blue-800 leading-relaxed max-w-prose">Penggunaan platform gratis. Layanan premium & penjemputan sampah memiliki tarif terjangkau.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="py-24 bg-white text-center px-6" data-aos="zoom-in">
+  <h3 class="text-4xl font-extrabold text-blue-800 tracking-tight">Mulai Berkontribusi Sekarang</h3>
+  <p class="text-blue-700 mt-4 text-lg max-w-md mx-auto leading-relaxed">
+    Jual barang tak terpakai atau atur penjemputan sampah dari rumah Anda
+  </p>
+  <a href="#" class="btn-glow mt-8 inline-block px-12 py-4 bg-blue-600 text-white rounded-full shadow-xl font-semibold tracking-wide
+    hover:bg-blue-700 focus-visible:outline-indigo-300" role="button" tabindex="0">
+    Gabung Sekarang
+  </a>
+</section>
+
+<!-- Footer -->
+<footer id="kontak" class="bg-[#1E1E2F] text-white py-12 px-6 shadow-md">
+  <div class="max-w-7xl mx-auto grid md:grid-cols-3 gap-12">
+    <div tabindex="0" aria-label="Kontak Section">
+      <h4 class="font-bold mb-4 text-lg tracking-wide">Kontak</h4>
+      <p>Email: <a href="mailto:reloopfoundation@gmail.com" class="underline hover:text-indigo-400">reloopfoundation@gmail.com</a></p>
+      <p>WA: <a href="https://wa.me/08814598234" target="_blank" rel="noopener" class="underline hover:text-indigo-400">08814598234</a></p>
+    </div>
+    <div tabindex="0" aria-label="Media Sosial Section">
+      <h4 class="font-bold mb-4 text-lg tracking-wide">Media Sosial</h4>
+      <p>Instagram: <a href="https://instagram.com/reloop.id" target="_blank" rel="noopener" class="underline hover:text-indigo-400">@reloop.id</a></p>
+      <p>Facebook: <a href="#" class="underline hover:text-indigo-400">ReLoop Foundation</a></p>
+    </div>
+    <div tabindex="0" aria-label="Alamat Section">
+      <h4 class="font-bold mb-4 text-lg tracking-wide">Alamat</h4>
+      <address>
+        Jl. Merdeka No. 11,<br />
+        Bandung, Indonesia
+      </address>
+    </div>
+  </div>
+  <p class="text-center text-sm mt-10 text-indigo-300 select-none">© 2025 ReLoop. All rights reserved.</p>
+</footer>
+
+<script>
+  // Init AOS animations
+  AOS.init({
+    once: true,
+    duration: 900,
+    easing: 'ease-in-out'
+  });
+
+  // GSAP animation for hero text
+  gsap.from(".hero-title", {
+    duration: 1.5,
+    y: -50,
+    opacity: 0,
+    ease: "power3.out"
+  });
+  gsap.from(".hero-btn", {
+    duration: 1.8,
+    delay: 0.8,
+    scale: 0.8,
+    opacity: 0,
+    ease: "back.out(1.7)"
+  });
+</script>
+
+</body>
+</html>
